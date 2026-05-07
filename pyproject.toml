@@ -1,0 +1,80 @@
+[project]
+name = "test"
+version = "0.1.0"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.13.0",
+    "datasets>=4.8.4",
+    "faiss-cpu>=1.13.2",
+    "loguru>=0.7.3",
+    "mteb>=2.12.16",
+    "numpy>=2.2.6",
+    "pandas>=2.3.3",
+    "requests>=2.33.1",
+    "sentence-transformers>=5.4.1",
+    "sentencepiece>=0.2.1",
+    "tokenizers>=0.22.2",
+    "torch==2.9.1",
+    "tqdm>=4.67.3",
+    "transformers>=5.5.4",
+]
+
+[dependency-groups]
+dev = [
+    "colorama>=0.4.6",
+    "hf-transfer>=0.1.9",
+    "ipykernel>=7.2.0",
+    "ipython>=9.12.0",
+    "ipywidgets>=8.1.8",
+    "jupyterlab>=4.5.6",
+    "notebook>=7.5.5",
+    "ruff>=0.15.11",
+    "tabulate>=0.10.0",
+]
+
+[project.urls]
+
+[tool.ruff]
+line-length = 99
+target-version = "py312"
+exclude = [
+    "./thirdparty/",
+    "./notebooks/",
+]
+
+[tool.ruff.lint]
+select = [
+    "B",      # flake8-bugbear
+    "C",      # comple-structure
+    "E",      # pycodestyle errors
+    "F",      # pyflakes
+    "I",      # isort
+    "W",      # pycodestyle warnings
+    "RUF013", # implicit-optional
+    "UP006",  # non-pep585-annotation (e.g. `list[int]` instead of `List[int]`)
+]
+extend-safe-fixes = ["UP006"]
+ignore = [
+    "C901", # complex-structure
+    "E101", # mixed-spaces-and-tabs
+    "E501", # line-too-long
+    "E741", # ambiguous-variable-name
+    "F402", # import-shadowed-by-loop-var
+    "F823", # undefined-local
+]
+
+[tool.ruff.lint.isort]
+known-third-party = ["wandb"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = [
+    "E402", # module-import-not-at-top-of-file
+    "F401", # unused-import
+    "F403", # undefined-local-with-import-star
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
